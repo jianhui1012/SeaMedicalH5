@@ -1,0 +1,10 @@
+	.logo {
+		width: 35%;
+		height: 35%;
+	}
+	
+	.title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		 padding-left: 3.5rem;
+	}

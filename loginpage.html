@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/login_st.css" />
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/base.css" />
+	</head>
+
+	<body>
+		<div class="mui-header">
+			<img src="images/logo.png" class="logo" />
+		</div>
+		<div class="mui-content">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>账号</label>
+					<input id='account' type="text" value="oh000000" class="mui-input-clear mui-input" placeholder="请输入账号">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='password' type="password" value="88532668" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+				<div class="mui-input-row">
+					<label>类型</label>
+					<input id='accounttype' type="text" value="点击选择登录类型" class="mui-input">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/mui.enterfocus.js"></script>
+		<script src="js/tool.customview.js"></script>
+		<script src="js/tool.utils.js"></script>
+		<script src="js/activity.login.js"></script>
+		<script>
+			//定义变量
+			var loginpage, userPicker, showUserPickerButton, loginButton, accountBox, passwordBox = null;
+
+			function setlistener() {
+				showUserPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						showUserPickerButton.value = items[0].text;
+					});
+				}, false);
+				 
+				 
+				loginButton.addEventListener('tap', function(event) {
+					if (true) {
+						window.location.href = "main.html";
+						return;
+					}
+					var loginInfo = {
+						uid: accountBox.value,
+						pwd: passwordBox.value,
+						qx: showUserPickerButton.value
+					};
+					owner.login(loginInfo, function(err) {
+						//						console.log(JSON.stringify(loginInfo))
+						if (err) {
+							plus.nativeUI.toast(err);
+							return;
+						} else {
+							plus.nativeUI.toast('登录成功');
+						}
+						toMain();
+						//隐藏登录界面
+						loginpage.hide();
+						plus.webview.getLaunchWebview().hide();
+					});
+				});
+				mui.enterfocus('#login-form input', function() {
+					mui.trigger(loginButton, 'tap');
+				});
+			}
+
+			function initview() {
+				var jsondata = [{
+					value: '船小二',
+					text: '船小二'
+				}, {
+					value: '船老大',
+					text: '船老大'
+				}];
+				//创建底部滑动框
+				userPicker = setcpoppicker(jsondata);
+				showUserPickerButton = document.getElementById('accounttype');
+				loginButton = document.getElementById('login');
+				accountBox = document.getElementById('account');
+				passwordBox = document.getElementById('password');
+				loginpage = plus.webview.currentWebview();
+				//设置屏幕
+				plus.screen.lockOrientation("portrait-primary");
+			}
+			mui.init({
+				statusBarBackground: '#f7f7f7'
+			});
+			mui.plusReady(function() {
+				initview();
+				//设置事件
+				setlistener();
+			});
+		</script>
+	</body>
+
+</html>

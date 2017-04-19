@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="feedback">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>受伤图片上传</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/tool.submitphotos.css" />
+		<link rel="stylesheet" href="css/sm.min.css">
+		<link href="css/mui.min.css" />
+	</head>
+
+	<body>
+		<div class=" page">
+			<header  id="headbar" class="bar bar-nav">
+				<a class="mui-action-back  button button-link button-nav pull-left back">
+					<span class="icon icon-left"></span> 返回
+				</a>
+				<h1 id="jc_title" class='title'>海上医疗救助自报</h1>
+			</header>
+
+			<div class="content">
+				<div class="content-block-title">基础数据</div>
+				<div class="list-block">
+					<ul>
+						<!-- Text inputs -->
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-form-name"></i></div>
+								<div class="item-inner">
+									<div class="item-title label">受伤人</div>
+									<div class="item-input">
+										<input id="ssr" type="text" placeholder="请输入受伤人姓名">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-form-email"></i></div>
+								<div class="item-inner">
+									<div class="item-title label">受伤时间</div>
+									<div class="item-input">
+										<input id="sssj" type="text" placeholder="请输入受伤时间" />
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-form-name"></i></div>
+								<div class="item-inner">
+									<div class="item-title label">船编号</div>
+									<div class="item-input">
+										<input id="cbh" type="text" placeholder="请输入船编号">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon  "></i></div>
+								<div class="item-inner">
+									<div class="item-title label">靠岸码头</div>
+									<div class="item-input">
+										<input id="kamt" type="text" placeholder="请输入靠岸码头" />
+									</div>
+								</div>
+							</div>
+						</li>
+
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon"></i></div>
+								<div class="item-inner">
+									<div class="item-title label">病情描述</div>
+									<div class="item-input">
+										<textarea id="bqms" placeholder="请输入病情描述"></textarea>
+									</div>
+								</div>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+
+				<div class="content-block-title" style="margin-top: 0.5rem;">上传图片</div>
+				<div id='image-list' class="rowt image-list" style="margin: 0;">
+				</div>
+				<div class="content-block">
+					<div class="row">
+						<div class="col-50">
+							<a href="#" id="jcsubmit" class="button button-big button-fill button-danger">提交</a>
+						</div>
+						<div class="col-50">
+							<a href="#" id="jcclear" class="button button-big button-fill button-success">取消</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript" src="js/mui.min.js"></script>
+			<script type='text/javascript' src="js/zepto.min.js" charset='utf-8'></script>
+			<script type='text/javascript' src="js/sm.min.js" charset='utf-8'></script>
+			<script src="js/dist/lrz.bundle.js?v=c2db08d"></script>
+			<script src="js/tool.submitphotos.js"></script>
+			<script type="text/javascript" src="js/tjjc_load.js"></script>
+			<script>
+				mui.plusReady(function() {
+					var self = plus.webview.currentWebview();
+					var showbar = self.showbar;
+					 
+				});
+				Zepto(function($) {
+					new TjjcAppPage("android");
+				})
+			</script>
+	</body>
+
+</html>

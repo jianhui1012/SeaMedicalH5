@@ -1,0 +1,99 @@
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<style type="text/css">
+			#map {
+				width: 100%;
+				position: fixed;
+				top: 50px;
+				bottom: 0px;
+				left: 0;
+				line-height: 200px;
+				text-align: center;
+				background: #FFFFFF;
+			}
+			
+			.mui-switch:before {
+				content: "关闭";
+			}
+			
+			.mui-switch.mui-active:before {
+				content: "开启";
+			}
+		</style>
+		<title>浏览器定位</title>
+	</head>
+
+	<body>
+		<div style="margin: 10;">
+			<!-- 蓝色开关关闭状态 -->
+			<div style="margin-left: 2px;position: absolute;margin-top: 4px;color: cornflowerblue;">卫星模式</div>
+			<div id="mapTypeSwitch" style="margin-left: 80px;position: absolute;margin-top: 0px;" class="mui-switch  mui-switch-blue">
+				<div class="mui-switch-handle"></div>
+			</div>
+
+		</div>
+
+		<div id="map">地图加载中...
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/tool.utils.js"></script>
+		<script type="text/javascript">
+			var em = null,
+				map = null;
+			// H5 plus事件处理
+			function plusReady() {
+				// 确保DOM解析完成
+				if(!em || !window.plus || map) {
+					return
+				};
+				map = new plus.maps.Map("map",{position:'absolute',zoom:12,zoomControls:true});
+				map.setTraffic(true);
+				map.setMapType(plus.maps.MapType.MAPTYPE_NORMAL)
+				plus.geolocation.getCurrentPosition(function(position) {
+					var address = position.address;
+					var coords = position.coords;
+					//console.log(JSON.stringify(position))
+					var point = new plus.maps.Point(coords.longitude, coords.latitude);
+					var marker = new plus.maps.Marker(point);
+					marker.setIcon("/logo.png");
+					marker.setLabel("我的位置");
+					var myaddress = address.city + address.district + position.addresses;
+					var bubble = new plus.maps.Bubble(myaddress);
+					marker.setBubble(bubble);
+					map.addOverlay(marker);
+					map.centerAndZoom(point, 22);
+					setLocalValue("$location", position);
+				}, function(e) {
+					mui.toast("获取位置信息失败：" + e.message);
+				}, {
+					provider: 'baidu',
+					coordsType: 'bd09ll'
+				});
+
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			// DOMContentloaded事件处理
+			document.addEventListener("DOMContentLoaded", function() {
+				em = document.getElementById("map");
+				plusReady();
+			}, false);
+			document.getElementById("mapTypeSwitch").addEventListener("toggle", function(event) {
+				if(event.detail.isActive) {
+					map.setMapType(plus.maps.MapType.MAPTYPE_SATELLITE)
+				} else {
+					map.setMapType(plus.maps.MapType.MAPTYPE_NORMAL)
+					
+				}
+			})
+		</script>
+	</body>
+
+</html>

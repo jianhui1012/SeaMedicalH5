@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>新闻详情</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/sm.min.css">
+		<link rel="stylesheet" href="css/base.css" />
+	</head>
+
+	<body>
+		<div class="page">
+			<header class="bar bar-nav">
+				<a href="indexpage.html" class="button button-link button-nav pull-left back">
+					<span class="icon icon-left"></span> 返回
+				</a>
+				<h1 class='title'> </h1>
+			</header>
+			<div class="content content-padded">
+
+			</div>
+			<script type="text/javascript" src="js/mui.min.js"></script>
+			<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+			<script type='text/javascript' src="js/sm.min.js" charset='utf-8'></script>
+			<script src="js/tool.back.js"></script>
+			<script type="text/javascript" src="js/tool.utils.js"></script>
+			<script>
+				Zepto(function($) {
+					$.ajax({
+						type: 'GET',
+						url: 'http://www.tngou.net/api/top/show',
+						data: {
+							id: getLocalByKey("newsid")
+						},
+						// type of data we are expecting in return:
+						dataType: 'jsonp',
+						success: function(data) {
+							if (data["title"] != null)
+								$(".title").append(data["title"]);
+							var sdata = data["message"];
+							$(".content").append(sdata);
+						},
+						error: function(xhr, type) {
+							alert('Ajax error!')
+						}
+					});
+					$.init();
+				})
+			</script>
+	</body>
+
+</html>

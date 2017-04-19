@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li style="background: cadetblue;" class=" mui-table-view-cell mui-media mui-col-xs-8 mui-col-sm-2">
+					<a href="addInspection.html">
+						<span class="mui-icon mui-icon-home"></span>
+						<div class="mui-media-body"><span style="color: white;">报一报</span></div>
+					</a>
+				</li>
+				<li style="background: burlywood" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-2">
+					<a href="#">
+						<span class="mui-icon mui-icon-email"></span>
+						<div class="mui-media-body"><span style="color: white;">身体鉴定</span></div>
+					</a>
+				</li>
+				<li style="background: darkslategray" class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-2">
+					<a href="#">
+						<span class="mui-icon mui-icon-chatbubble"></span>
+						<div class="mui-media-body"><span style="color: white;">海上疾病</span></div>
+					</a>
+				</li>
+				<li style="background: cornflowerblue" class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-2">
+					<a href="#">
+						<span class="mui-icon mui-icon-search"></span>
+						<div class="mui-media-body"><span style="color: white;">大统计</span></div>
+					</a>
+				</li>
+
+			</ul>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+
+		mui('.mui-table-view').on('tap', 'a', function() {
+			var id = this.getAttribute("href");
+			//传值给详情页面，通知加载新数据
+			var href = this.href;
+			if("#"==id)
+			  return;
+			mui.openWindow({
+				id: id,
+				url: id,
+				extras: {
+					showbar: false
+				}
+			});
+
+		});
+	</script>
+
+</html>

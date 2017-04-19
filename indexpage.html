@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/sm.min.css">
+
+	</head>
+
+	<body>
+		<div class="page">
+			<header class="bar bar-nav">
+				<h1 class='title'>主页</h1>
+				<span class="icon icon-menu open-panel" data-panel='#panel-left-demo'></span>
+			</header>
+			<div class="content">
+
+			</div>
+		</div>
+		<div class="panel-overlay"></div>
+		<!-- Left Panel with Reveal effect -->
+		<div class="panel panel-left panel-reveal theme-dark" id='panel-left-demo'>
+			<div class="content-block">
+				<img src="images/logo.png" class="logo" />
+			</div>
+			<div class="list-block">
+				<ul>
+					<li class="item-content item-link" data-fun="todaynews">
+						<div class="item-media"><i class="icon icon-f7"></i></div>
+						<div class="item-inner">
+							<div class="item-title">今日新闻</div>
+						</div>
+					</li>
+					<li class="item-content item-link" data-fun="seamedical">
+						<div class="item-media"><i class="icon icon-f7"></i></div>
+
+						<div class="item-inner">
+
+							<div class="item-title">海上医疗</div>
+
+						</div>
+					</li>
+					<li class="item-content item-link" data-fun="qrcode">
+						<div class="item-media"><i class="icon icon-f7"></i></div>
+						<div class="item-inner">
+							<div class="item-title">扫一扫</div>
+						</div>
+					</li>
+					<li class="item-content item-link" data-fun="aboutus">
+						<div class="item-media"><i class="icon icon-f7"></i></div>
+						<div class="item-inner">
+							<div class="item-title">关于我们</div>
+						</div>
+					</li>
+					<li class="item-content item-link" data-fun="update">
+						<div class="item-media"><i class="icon icon-f7"></i></div>
+						<div class="item-inner">
+							<div class="item-title">版本更新</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src="js/sm.min.js" charset='utf-8'></script>
+		<script src="js/tool.back.js"></script>
+		<script type="text/javascript" src="js/tool.utils.js" ></script>
+		<script type="text/javascript">
+			Zepto(function($) {
+				$.ajax({
+					type: 'GET',
+					url: 'http://www.tngou.net/api/top/news?id=10&rows=10',
+					// type of data we are expecting in return:
+					dataType: 'jsonp',
+					success: function(data) {
+						data = data.list;
+						for (var sigle in data) {
+							sigled = data[sigle];
+							var sdata = '<div class="list-block media-list">' +
+								'<ul><li><a onClick="loaddetail('+sigled["id"]+')" class="item-link item-content"><div class="item-media">' +
+								'<img src="http://tnfs.tngou.net/image' + sigled['img'] + '_180x200" style="width: 4rem;"></div><div class="item-inner"><div class="item-title">' + sigled['title'] + '</div>' +
+								'<div class="item-text">' + sigled['description'] + '</div></div></a></li></u></div>';
+							$(".content").append(sdata);
+						}
+					},
+					error: function(xhr, type) {
+						alert('Ajax error!')
+					}
+				})
+			})
+			$('.list-block').on('click', 'li', function(e) {
+				//功能名称
+				var _fun = this.getAttribute('data-fun');
+				//跳转地址
+				var urlAddress = "";
+				//是否使用缓存
+				var ignoreCache = true;
+				switch (_fun) {
+					case "todaynews":
+						urlAddress = "";
+						break;
+					case "seamedical":
+						urlAddress = "addInspection.html";
+						break;
+					case "qrcode":
+						urlAddress = "addInspection.html";
+						break;
+					case "aboutus":
+						urlAddress = "aboutus.html";
+						break;
+					case "update":
+						urlAddress = "";
+						break;
+					default:
+						break;
+				}
+				loadPage(urlAddress, ignoreCache);
+			});
+			/***
+			 * 具体跳转函数
+			 * @param {Object} urlAddresss
+			 * @param {Object} ignoreCache
+			 */
+			function loadPage(urlAddresss, ignoreCache) {
+				$.router.load(urlAddresss, ignoreCache);
+			}
+			
+			function loaddetail(id)
+			{
+				setLocalValue("newsid",id,false);
+				loadPage("newsdetail.html",true);
+			}
+		</script>
+	</body>
+
+</html>
