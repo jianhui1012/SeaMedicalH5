@@ -20,15 +20,15 @@
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id='account' type="text" value="oh000000" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<input id='account' type="text" value="admin" class="mui-input-clear mui-input" placeholder="请输入账号">
 				</div>
 				<div class="mui-input-row">
 					<label>密码</label>
-					<input id='password' type="password" value="88532668" class="mui-input-clear mui-input" placeholder="请输入密码">
+					<input id='password' type="password" value="admin" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
 				<div class="mui-input-row">
 					<label>类型</label>
-					<input id='accounttype' type="text" value="点击选择登录类型" class="mui-input">
+					<input id='accounttype' type="text" value="船员" class="mui-input">
 				</div>
 			</form>
 			<div class="mui-content-padded">
@@ -60,22 +60,21 @@
 						return;
 					}
 					var loginInfo = {
-						uid: accountBox.value,
-						pwd: passwordBox.value,
-						qx: showUserPickerButton.value
+						"用户名": accountBox.value,
+						"密码": passwordBox.value,
+						"类别": showUserPickerButton.value
 					};
 					owner.login(loginInfo, function(err) {
-						//						console.log(JSON.stringify(loginInfo))
 						if (err) {
 							plus.nativeUI.toast(err);
 							return;
 						} else {
 							plus.nativeUI.toast('登录成功');
 						}
-						toMain();
-						//隐藏登录界面
-						loginpage.hide();
-						plus.webview.getLaunchWebview().hide();
+//						toMain();
+//						//隐藏登录界面
+//						loginpage.hide();
+//						plus.webview.getLaunchWebview().hide();
 					});
 				});
 				mui.enterfocus('#login-form input', function() {
@@ -85,11 +84,8 @@
 
 			function initview() {
 				var jsondata = [{
-					value: '船小二',
-					text: '船小二'
-				}, {
-					value: '船老大',
-					text: '船老大'
+					value: '船员',
+					text: '船员'
 				}];
 				//创建底部滑动框
 				userPicker = setcpoppicker(jsondata);

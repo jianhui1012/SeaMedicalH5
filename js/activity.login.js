@@ -13,16 +13,14 @@
 			return callback('用户名或密码不能为空');
 		}
  
-		NewMuiAjax2(normalurlserver,"/Ajax/Login.ashx", loginInfo, 'json', 'post',
+		NewMuiAjax2("http://localhost:2526/","api/用户/Login", loginInfo, 'json', 'post',
 			function(data) {
-//			console.log(JSON.stringify(data));
-				var result = data["Result"];
-				var message = data;
+ 	          console.log(JSON.stringify(data));
 				if ("False" == result) {
 //					console.log(JSON.stringify(data))
 					return callback('用户名或密码错误');
 				} else {
-//					return callback('登陆成功');
+
 					return owner.createState(message, callback);
 				}
 			}, function(xhr, type, errorThrown) {
