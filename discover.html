@@ -30,8 +30,7 @@
 	<body>
 		<div style="margin: 10;">
 			<!-- 蓝色开关关闭状态 -->
-			<div style="margin-left: 2px;position: absolute;margin-top: 4px;color: cornflowerblue;">卫星模式</div>
-			<div id="mapTypeSwitch" style="margin-left: 80px;position: absolute;margin-top: 0px;" class="mui-switch  mui-switch-blue">
+			<div id="mapTypeSwitch" style="margin-left: 10px ;margin-top: 0px;" class="mui-switch  mui-switch-blue">
 				<div class="mui-switch-handle"></div>
 			</div>
 
@@ -44,13 +43,15 @@
 		<script type="text/javascript">
 			var em = null,
 				map = null;
-			// H5 plus事件处理
-			function plusReady() {
-				// 确保DOM解析完成
-				if(!em || !window.plus || map) {
-					return
-				};
-				map = new plus.maps.Map("map",{position:'absolute',zoom:12,zoomControls:true});
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui.plusReady(function() {
+				map = new plus.maps.Map("map", {
+					position: 'absolute',
+					zoom: 12,
+					zoomControls: true
+				});
 				map.setTraffic(true);
 				map.setMapType(plus.maps.MapType.MAPTYPE_NORMAL)
 				plus.geolocation.getCurrentPosition(function(position) {
@@ -59,13 +60,15 @@
 					//console.log(JSON.stringify(position))
 					var point = new plus.maps.Point(coords.longitude, coords.latitude);
 					var marker = new plus.maps.Marker(point);
+					//console.log(JSON.stringify(point))
 					marker.setIcon("/logo.png");
 					marker.setLabel("我的位置");
-					var myaddress = address.city + address.district + position.addresses;
+					var myaddress = position.addresses;
+					//console.log(JSON.stringify(myaddress))
 					var bubble = new plus.maps.Bubble(myaddress);
 					marker.setBubble(bubble);
 					map.addOverlay(marker);
-					map.centerAndZoom(point, 22);
+					map.centerAndZoom(point, 18);
 					setLocalValue("$location", position);
 				}, function(e) {
 					mui.toast("获取位置信息失败：" + e.message);
@@ -73,24 +76,13 @@
 					provider: 'baidu',
 					coordsType: 'bd09ll'
 				});
+			});
 
-			}
-			if(window.plus) {
-				plusReady();
-			} else {
-				document.addEventListener("plusready", plusReady, false);
-			}
-			// DOMContentloaded事件处理
-			document.addEventListener("DOMContentLoaded", function() {
-				em = document.getElementById("map");
-				plusReady();
-			}, false);
 			document.getElementById("mapTypeSwitch").addEventListener("toggle", function(event) {
 				if(event.detail.isActive) {
 					map.setMapType(plus.maps.MapType.MAPTYPE_SATELLITE)
 				} else {
 					map.setMapType(plus.maps.MapType.MAPTYPE_NORMAL)
-					
 				}
 			})
 		</script>

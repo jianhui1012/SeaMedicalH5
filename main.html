@@ -210,6 +210,8 @@
 				if (showMenu) {
 					closeMenu();
 				} else {
+					//console.log(plus.os.name)
+					if(plus.os.name=="Android"){
 					//首次按键，提示‘再按一次退出应用’
 					if (!first) {
 						first = new Date().getTime();
@@ -219,8 +221,9 @@
 						}, 1000);
 					} else {
 						if (new Date().getTime() - first < 1000) {
-							//plus.runtime.quit();
+							plus.runtime.quit();
 						}
+					}
 					}
 				}
 			};
