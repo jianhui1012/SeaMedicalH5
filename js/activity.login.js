@@ -13,7 +13,10 @@
 			return callback('用户名或密码不能为空');
 		}
  
-		NewMuiAjax2("http://localhost:2526/","api/用户/Login", loginInfo, 'json', 'post',
+ 
+
+ 
+		NewMuiAjax2("http://localhost:2526/","", loginInfo, 'json', 'post',
 			function(data) {
  	          console.log(JSON.stringify(data));
 				if ("False" == result) {

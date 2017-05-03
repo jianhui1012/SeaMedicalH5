@@ -1,4 +1,4 @@
-var curtype, lat, longt;
+var curtype, cururl, lat, longt;
 var ui = {
 	ssr: $('#ssr'),
 	sssj: $('#sssj'), //受伤时间
@@ -10,8 +10,9 @@ var ui = {
 	jcclear: $('#jcclear'),
 };
 
-function TjjcAppPage(type) {
+function TjjcAppPage(type, url) {
 	curtype = type;
+	cururl = url;
 	mui.plusReady(function() {
 		getPosByBaidu();
 	});
@@ -53,7 +54,8 @@ TjjcAppPage.prototype = {
 	},
 	initevent: function() {
 		ui.jcsubmit.click(function() {
-			$.post('http://hsyl.tunnel.qydev.com/api/受伤记录?cyid=1', {
+			console.log(cururl);
+			$.post(cururl, {
 				"受伤部位": ui.ssr.val(),
 				"时间": ui.sssj.val(),
 				"处理状态": ui.cbh.val(),
@@ -62,9 +64,16 @@ TjjcAppPage.prototype = {
 				"精度": longt,
 				"维度": lat,
 				"图片": getimagebase64()
-			}, function(response) {
-				
-				alert(response);
+			}, function(data) {
+				console.log(data);
+				data = JSON.parse(data);
+				if(data.response.error == 0) {
+					//获得服务器响应
+					plus.nativeUI.toast('提交成功');
+					mui.back();
+				} else {
+					plus.nativeUI.toast('提交失败' + response);
+				}
 			})
 		});
 		ui.jcclear.click(function() {

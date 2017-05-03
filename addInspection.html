@@ -16,7 +16,7 @@
 
 	<body>
 		<div class=" page">
-			<header  id="headbar" class="bar bar-nav">
+			<header id="headbar" class="bar bar-nav">
 				<a class="mui-action-back  button button-link button-nav pull-left back">
 					<span class="icon icon-left"></span> 返回
 				</a>
@@ -106,16 +106,19 @@
 			<script type='text/javascript' src="js/zepto.min.js" charset='utf-8'></script>
 			<script type='text/javascript' src="js/sm.min.js" charset='utf-8'></script>
 			<script src="js/dist/lrz.bundle.js?v=c2db08d"></script>
+			<script src="js/tool.utils.js"></script>
 			<script src="js/tool.submitphotos.js"></script>
 			<script type="text/javascript" src="js/tjjc_load.js"></script>
 			<script>
 				mui.plusReady(function() {
 					var self = plus.webview.currentWebview();
 					var showbar = self.showbar;
-					 
+
 				});
 				Zepto(function($) {
-					new TjjcAppPage("android");
+					var urla = getWebMethod(Const.AddSSJL)
+					var cyid = getLocalByKey("$user").Id;
+					new TjjcAppPage("android",urla + '?cyid=' + cyid);
 				})
 			</script>
 	</body>

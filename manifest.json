@@ -170,7 +170,8 @@
 					"js/tool.customview.js",
 					"indexpage.html",
 					"main.html",
-					"images/ship@3x.png"
+					"images/ship@3x.png",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
@@ -188,7 +189,8 @@
 					"js/mui.min.js",
 					"js/zepto.min.js",
 					"js/sm.min.js",
-					"css/sm.min.css"
+					"css/sm.min.css",
+					"js/tool.utils.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -253,7 +255,8 @@
 			},
 			"index-menu.html": {
 				"resources": [
-					"images/user-photo.png"
+					"images/user-photo.png",
+					"fonts/mui.ttf"
 				],
 				"refer": [
 					"addInspection.html",

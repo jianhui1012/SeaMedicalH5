@@ -41,46 +41,18 @@
 		<script src="js/mui.enterfocus.js"></script>
 		<script src="js/tool.customview.js"></script>
 		<script src="js/tool.utils.js"></script>
-		<script src="js/activity.login.js"></script>
 		<script>
 			//定义变量
 			var loginpage, userPicker, showUserPickerButton, loginButton, accountBox, passwordBox = null;
 
-			function setlistener() {
-				showUserPickerButton.addEventListener('tap', function(event) {
-					userPicker.show(function(items) {
-						showUserPickerButton.value = items[0].text;
-					});
-				}, false);
-				 
-				 
-				loginButton.addEventListener('tap', function(event) {
-					if (true) {
-						window.location.href = "main.html";
-						return;
-					}
-					var loginInfo = {
-						"用户名": accountBox.value,
-						"密码": passwordBox.value,
-						"类别": showUserPickerButton.value
-					};
-					owner.login(loginInfo, function(err) {
-						if (err) {
-							plus.nativeUI.toast(err);
-							return;
-						} else {
-							plus.nativeUI.toast('登录成功');
-						}
-//						toMain();
-//						//隐藏登录界面
-//						loginpage.hide();
-//						plus.webview.getLaunchWebview().hide();
-					});
-				});
-				mui.enterfocus('#login-form input', function() {
-					mui.trigger(loginButton, 'tap');
-				});
-			}
+			mui.init({
+				statusBarBackground: '#f7f7f7'
+			});
+			mui.plusReady(function() {
+				initview();
+				//设置事件
+				setlistener();
+			});
 
 			function initview() {
 				var jsondata = [{
@@ -97,14 +69,39 @@
 				//设置屏幕
 				plus.screen.lockOrientation("portrait-primary");
 			}
-			mui.init({
-				statusBarBackground: '#f7f7f7'
-			});
-			mui.plusReady(function() {
-				initview();
-				//设置事件
-				setlistener();
-			});
+
+			function setlistener() {
+				showUserPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						showUserPickerButton.value = items[0].text;
+					});
+				}, false);
+
+				loginButton.addEventListener('tap', function(event) {
+					var urla = getWebMethod(Const.Login)
+					var loginInfo = {
+						"用户名": accountBox.value,
+						"密码": passwordBox.value,
+						"类别": showUserPickerButton.value
+					};
+					mui.post(urla, loginInfo, function(data) {
+						data = JSON.parse(data);
+						if(data.response.error == 0) {
+							//获得服务器响应
+							plus.nativeUI.toast('登录成功');
+							window.location.href = "main.html";
+							setLocalValue("$user", data.response.data)
+						} else {
+							plus.nativeUI.toast('登录失败' + data.response.message);
+						}
+					});
+
+				});
+
+				mui.enterfocus('#login-form input', function() {
+					mui.trigger(loginButton, 'tap');
+				});
+			}
 		</script>
 	</body>
 

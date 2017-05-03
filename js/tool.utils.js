@@ -1,23 +1,12 @@
+var Const=new Object();
+Const.Login="Login";
+Const.Regeister="Regeister";
+Const.AddSSJL="AddSSJL";
+Const.GetSSJLlist="GetSSJLlist";
 //接口地址
-var NewMuiAjax = function(serverurl,ashx, methodname, subdata, datatype, ajaxtype, successfunction, errorfunction) {
-	mui.ajax(serverurl + ashx +"?Method="+ methodname, {
-		data: subdata,
-		dataType: datatype, //服务器返回json格式数据
-		type: ajaxtype, //HTTP请求类型
-		timeout: 5000, //超时时间设置为5秒；
-		success: successfunction,
-		error: errorfunction
-	});
-}
-var NewMuiAjax2 = function(serverurl,ashx, subdata, datatype, ajaxtype, successfunction, errorfunction) {
-	mui.ajax(serverurl+ashx,{
-		data: subdata,
-		dataType: datatype, //服务器返回json格式数据
-		type: ajaxtype, //HTTP请求类型
-		timeout: 5000, //超时时间设置为5秒；
-		success: successfunction,
-		error: errorfunction
-	});
+var getWebMethod=function(method){
+ method=method||"";	
+ return "http://sea.tunnel.qydev.com/"+method
 }
  
 
@@ -29,7 +18,7 @@ var NewMuiAjax2 = function(serverurl,ashx, subdata, datatype, ajaxtype, successf
  */
 var setLocalValue = function(name, value) {
 	value = value || {};
-	localStorage.setItem(name, value);
+	localStorage.setItem(name, JSON.stringify(value));
 };
 
 
