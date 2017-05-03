@@ -20,11 +20,13 @@
 				color: #fff;
 				border-color: #fff;
 			}
+			
 			.item-logo {
 				width: 100%;
 				height: 100%;
 				position: relative;
 			}
+			
 			.item-logo a {
 				width: 200px;
 				height: 200px;
@@ -41,6 +43,7 @@
 				left: 50%;
 				margin-left: -100px;
 			}
+			
 			.animate {
 				position: absolute;
 				left: 0;
@@ -49,10 +52,12 @@
 				color: #fff;
 				display: -moz-box;
 			}
+			
 			.animate h2 {
 				text-align: center;
 				margin-bottom: 20px;
 			}
+			
 			.animate li {
 				width: 50%;
 				height: 30px;
@@ -61,34 +66,44 @@
 				font-size: 16px;
 				text-align: right;
 			}
+			
 			.animate li:nth-child(3) {
 				text-align: left;
 				float: right;
 			}
+			
 			.animated {
 				-webkit-animation-duration: 1s;
 				-webkit-animation-play-state: paused;
 				-webkit-animation-fill-mode: both;
 			}
+			
 			.guide-show .bounceInDown {
 				-webkit-animation-name: bounceInDown;
 				-webkit-animation-play-state: running;
 				-webkit-animation-delay: 1s;
 				display: block;
 			}
+			
 			.guide-show .bounceInLeft {
 				-webkit-animation-name: bounceInLeft;
 				display: block;
 				-webkit-animation-play-state: running;
 			}
+			
 			.guide-show .bounceInRight {
 				-webkit-animation-name: bounceInRight;
 				display: block;
 				-webkit-animation-play-state: running;
 				-webkit-animation-delay: 0.5s;
 			}
+			
 			@-webkit-keyframes bounceInDown {
-				0%, 60%, 75%, 90%, 100% {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
 					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 				}
@@ -115,8 +130,13 @@
 					transform: none;
 				}
 			}
+			
 			@-webkit-keyframes bounceInLeft {
-				0%, 60%, 75%, 90%, 100% {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
 					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 				}
@@ -143,8 +163,13 @@
 					transform: none;
 				}
 			}
+			
 			@-webkit-keyframes bounceInRight {
-				0%, 60%, 75%, 90%, 100% {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
 					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 				}
@@ -179,14 +204,14 @@
 			<div class="mui-slider-group">
 				<!-- 第一张 -->
 				<div class="mui-slider-item">
-					<div class="item-logo" style="background-color: #D74B28">
+					<div class="item-logo" style="background-color: #0A8DDF">
 						<a href="#">
-						MUI
+							事故上报
 						</a>
 						<div class="animate guide-show">
-							<h2 class="animated bounceInDown">小巧高能</h2>
-							<li class="animated bounceInLeft">几十K的JS和CSS</li>
-							<li class="animated bounceInRight">上百种控件样式和模板</li>
+							<h2 class="animated bounceInDown">操作便捷</h2>
+							<li class="animated bounceInLeft">高效压缩</li>
+							<li class="animated bounceInRight">智能提示</li>
 						</div>
 					</div>
 				</div>
@@ -194,12 +219,12 @@
 				<div class="mui-slider-item">
 					<div class="item-logo" style="background-color: #02C1ED;">
 						<a href="#">
-						MUI
+							地图定位
 						</a>
 						<div id="tips-2" class="animate mui-hidden">
-							<h2 class="animated bounceInDown">原生UI</h2>
-							<li class="animated bounceInLeft">以iOS原生UI为基础</li>
-							<li class="animated bounceInRight">补充Android特有样式</li>
+							<h2 class="animated bounceInDown">精度高</h2>
+							<li class="animated bounceInLeft">时时性</li>
+							<li class="animated bounceInRight">友好性</li>
 						</div>
 					</div>
 				</div>
@@ -207,12 +232,12 @@
 				<div class="mui-slider-item">
 					<div class="item-logo" style="background-color: #67C962;">
 						<a href="#">
-						MUI
+							数据统计
 						</a>
 						<div id="tips-3" class="animate mui-hidden">
-							<h2 class="animated bounceInDown">流畅体验</h2>
-							<li class="animated bounceInLeft">下拉刷新、转场动画</li>
-							<li class="animated bounceInRight">整个世界都流畅了</li>
+							<h2 class="animated bounceInDown">覆盖率全</h2>
+							<li class="animated bounceInLeft">良好的交互性</li>
+							<li class="animated bounceInRight">预测未来的灾害</li>
 						</div>
 					</div>
 				</div>
@@ -220,7 +245,7 @@
 				<div class="mui-slider-item">
 					<div class="item-logo" style="background-color: #FCD208;">
 						<a href="#">
-						MUI
+							海上医疗
 						</a>
 						<div class="animate">
 							<button id='close' class="mui-btn mui-btn-warning mui-btn-outlined">立即体验</button>
@@ -239,30 +264,42 @@
 		<script>
 			mui.back = function() {};
 			mui.plusReady(function() {
-				if(mui.os.ios){
+				if(plus.storage.getItem("lauchFlag")) {
+					mui.openWindow({
+						url: 'loginpage.html',
+						id: 'loginpage'
+					});
+				}
+				if(mui.os.ios) {
 					plus.navigator.setFullscreen(true);
 				}
 				plus.navigator.closeSplashscreen();
+
 			});
 			//立即体验按钮点击事件
 			document.getElementById("close").addEventListener('tap', function(event) {
+				mui.openWindow({
+					url: 'loginpage.html',
+					id: 'loginpage'
+				});
+
 				plus.storage.setItem("lauchFlag", "true");
 				plus.navigator.setFullscreen(false);
 				plus.webview.currentWebview().close();
+
 			}, false);
 			//图片切换时，触发动画
 			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
-			 	//注意slideNumber是从0开始的；
-			 	var index = event.detail.slideNumber+1;
-			 	if(index==2||index==3){
-			 		var item = document.getElementById("tips-"+index);
-			 		if(item.classList.contains("mui-hidden")){
-			 			item.classList.remove("mui-hidden");
-			 			item.classList.add("guide-show");
-			 		}
-			 	}
+				//注意slideNumber是从0开始的；
+				var index = event.detail.slideNumber + 1;
+				if(index == 2 || index == 3) {
+					var item = document.getElementById("tips-" + index);
+					if(item.classList.contains("mui-hidden")) {
+						item.classList.remove("mui-hidden");
+						item.classList.add("guide-show");
+					}
+				}
 			});
-			
 		</script>
 	</body>
 
