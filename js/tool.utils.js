@@ -1,8 +1,11 @@
 var Const=new Object();
 Const.Login="Login";
+Const.GetUser="GetUser";
 Const.Regeister="Regeister";
 Const.AddSSJL="AddSSJL";
 Const.GetSSJLlist="GetSSJLlist";
+Const.GetSSDetail="GetSSDetail";
+
 //接口地址
 var getWebMethod=function(method){
  method=method||"";	

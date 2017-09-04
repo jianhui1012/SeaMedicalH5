@@ -49,11 +49,12 @@
 			mui.plusReady(function() {
 				map = new plus.maps.Map("map", {
 					position: 'absolute',
-					zoom: 12,
+					zoom: 14,
 					zoomControls: true
 				});
 				map.setTraffic(true);
 				map.setMapType(plus.maps.MapType.MAPTYPE_NORMAL)
+				//map.centerAndZoom(new plus.maps.Point(116.347496,39.970191), 14);
 				plus.geolocation.getCurrentPosition(function(position) {
 					var address = position.address;
 					var coords = position.coords;
@@ -61,14 +62,14 @@
 					var point = new plus.maps.Point(coords.longitude, coords.latitude);
 					var marker = new plus.maps.Marker(point);
 					//console.log(JSON.stringify(point))
-					marker.setIcon("/logo.png");
+					//marker.set("/logo.png");
 					marker.setLabel("我的位置");
 					var myaddress = position.addresses;
-					//console.log(JSON.stringify(myaddress))
+					console.log(JSON.stringify(myaddress))
 					var bubble = new plus.maps.Bubble(myaddress);
 					marker.setBubble(bubble);
 					map.addOverlay(marker);
-					map.centerAndZoom(point, 18);
+					map.centerAndZoom(point, 14);
 					setLocalValue("$location", position);
 				}, function(e) {
 					mui.toast("获取位置信息失败：" + e.message);

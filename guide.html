@@ -204,7 +204,7 @@
 			<div class="mui-slider-group">
 				<!-- 第一张 -->
 				<div class="mui-slider-item">
-					<div class="item-logo" style="background-color: #0A8DDF">
+					<div class="item-logo" style="background-color: #FCD208">
 						<a href="#">
 							事故上报
 						</a>
@@ -243,7 +243,7 @@
 				</div>
 				<!-- 第四张 -->
 				<div class="mui-slider-item">
-					<div class="item-logo" style="background-color: #FCD208;">
+					<div class="item-logo" style="background-color: #0A8DDF;">
 						<a href="#">
 							海上医疗
 						</a>
@@ -261,27 +261,17 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/tool.utils.js"></script>
 		<script>
 			mui.back = function() {};
 			mui.plusReady(function() {
-				if(plus.storage.getItem("lauchFlag")) {
-					mui.openWindow({
-						url: 'loginpage.html',
-						id: 'loginpage'
-					});
-				}
 				if(mui.os.ios) {
 					plus.navigator.setFullscreen(true);
 				}
 				plus.navigator.closeSplashscreen();
-
 			});
 			//立即体验按钮点击事件
 			document.getElementById("close").addEventListener('tap', function(event) {
-				mui.openWindow({
-					url: 'loginpage.html',
-					id: 'loginpage'
-				});
 
 				plus.storage.setItem("lauchFlag", "true");
 				plus.navigator.setFullscreen(false);

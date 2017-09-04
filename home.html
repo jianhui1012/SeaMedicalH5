@@ -27,24 +27,23 @@
 					</a>
 				</li>
 				<li style="background: burlywood" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-2">
-					<a href="echarts.html">
+					<a href="SSList.html">
 						<span class="mui-icon mui-icon-email"></span>
-						<div class="mui-media-body"><span style="color: white;">身体鉴定</span></div>
+						<div class="mui-media-body"><span style="color: white;">受伤记录</span></div>
 					</a>
 				</li>
 				<li style="background: darkslategray" class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-2">
-					<a href="#">
+					<a href="indexpage.html">
 						<span class="mui-icon mui-icon-chatbubble"></span>
-						<div class="mui-media-body"><span style="color: white;">海上疾病</span></div>
+						<div class="mui-media-body"><span style="color: white;">疾病资讯</span></div>
 					</a>
 				</li>
 				<li style="background: cornflowerblue" class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-2">
-					<a href="#">
+					<a href="echarts.html">
 						<span class="mui-icon mui-icon-search"></span>
 						<div class="mui-media-body"><span style="color: white;">大统计</span></div>
 					</a>
 				</li>
-
 			</ul>
 		</div>
 	</body>
@@ -53,9 +52,8 @@
 		mui.init({
 			swipeBack: true //启用右滑关闭功能
 		});
-
 		mui('.mui-table-view').on('tap', 'a', function() {
-			var id = this.getAttribute("href");
+			var id= this.getAttribute("href");
 			//传值给详情页面，通知加载新数据
 			var href = this.href;
 			if("#"==id)

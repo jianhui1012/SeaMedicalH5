@@ -64,11 +64,7 @@
 						通知公告
 					</a>
 					</li>-->
-						<li class="mui-table-view-cell">
-							<a class="mui-navigate-right" open-type="basic" href="aboutus.html">
-								关于我们
-							</a>
-						</li>
+					 
 						<li class="mui-table-view-cell">
 							<a class="mui-navigate-right" open-type="exit">
 								退出登录
@@ -104,11 +100,12 @@
 				var index = null,
 					currentwebview = null;
 				mui.plusReady(function() {
+					var user = JSON.parse(JSON.stringify(getLocalByKey("$user")));
+					 tc.innerText = user.用户名;
 					//获得主页面webview引用；
 					index = plus.webview.currentWebview().opener();
 					currentwebview = plus.webview.getWebviewById('daicha_sub');
 					//初始化用户信息
-					tc.innerText = "阿董";//getLocalByKey('$user')["UserName"];
 				});
 				mui('.mui-table-view').on('tap', 'a', function() {
 					var id = this.getAttribute("href");

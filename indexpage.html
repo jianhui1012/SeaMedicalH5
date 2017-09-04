@@ -10,40 +10,44 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="css/base.css" />
 		<link rel="stylesheet" href="css/sm.min.css">
+		<link rel="stylesheet" href="css/mui.min.css" />
 
 	</head>
 
 	<body>
 		<div class="page">
-			<header class="bar bar-nav">
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+				<h1 class="mui-title">新闻列表</h1>
+			</header>
+			<!--<header class="bar bar-nav">
 				<h1 class='title'>新闻列表</h1>
 					<a href="home.html" class="button button-link button-nav pull-left back">
 					<span class="icon icon-left"></span> 返回
-				</a>		</header>
-			<div class="content">
+				</a>		</header>-->
+			<div class="content" style="margin-top: 1rem;">
 
 			</div>
 		</div>
 		<div class="panel-overlay"></div>
 		<!-- Left Panel with Reveal effect -->
-	 	<script type="text/javascript" src="js/mui.min.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
 		<script type='text/javascript' src='js/zepto.min.js' charset='utf-8'></script>
 		<script type='text/javascript' src="js/sm.min.js" charset='utf-8'></script>
-		<script src="js/tool.back.js"></script>
-		<script type="text/javascript" src="js/tool.utils.js" ></script>
+		<script type="text/javascript" src="js/tool.utils.js"></script>
 		<script type="text/javascript">
 			Zepto(function($) {
 				$.ajax({
 					type: 'GET',
-					url: 'http://www.tngou.net/api/top/news?id=10&rows=10',
+					url: 'http://www.tngou.net/api/info/list?id=7',
 					// type of data we are expecting in return:
 					dataType: 'jsonp',
 					success: function(data) {
-						data = data.list;
-						for (var sigle in data) {
+						data = data.tngou;
+						for(var sigle in data) {
 							sigled = data[sigle];
 							var sdata = '<div class="list-block media-list">' +
-								'<ul><li><a onClick="loaddetail('+sigled["id"]+')" class="item-link item-content"><div class="item-media">' +
+								'<ul><li><a onClick="loaddetail(' + sigled["id"] + ')" class="item-link item-content"><div class="item-media">' +
 								'<img src="http://tnfs.tngou.net/image' + sigled['img'] + '_180x200" style="width: 4rem;"></div><div class="item-inner"><div class="item-title">' + sigled['title'] + '</div>' +
 								'<div class="item-text">' + sigled['description'] + '</div></div></a></li></u></div>';
 							$(".content").append(sdata);
@@ -61,7 +65,7 @@
 				var urlAddress = "";
 				//是否使用缓存
 				var ignoreCache = true;
-				switch (_fun) {
+				switch(_fun) {
 					case "todaynews":
 						urlAddress = "";
 						break;
@@ -90,11 +94,10 @@
 			function loadPage(urlAddresss, ignoreCache) {
 				$.router.load(urlAddresss, ignoreCache);
 			}
-			
-			function loaddetail(id)
-			{
-				setLocalValue("newsid",id,false);
-				loadPage("newsdetail.html",true);
+
+			function loaddetail(id) {
+				setLocalValue("newsid", id, false);
+				loadPage("newsdetail.html", true);
 			}
 		</script>
 	</body>

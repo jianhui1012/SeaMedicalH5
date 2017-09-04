@@ -49,6 +49,17 @@
 				statusBarBackground: '#f7f7f7'
 			});
 			mui.plusReady(function() {
+				//mui.toast("$user:");
+				//是否第一次启动
+				if(plus.storage.getItem("lauchFlag")) {
+					//mui.toast("$user:" + JSON.stringify(getLocalByKey("$user")));
+				} else {
+					mui.openWindow({
+						url: 'guide.html',
+						id: 'guide'
+					});
+				}
+
 				initview();
 				//设置事件
 				setlistener();

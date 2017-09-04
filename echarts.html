@@ -37,11 +37,11 @@
 			<div class="mui-content-padded">
 				<h5>海域经纬度事故</h5>
 				<div class="chart" id="barChart"></div>
-				<h5>受伤部位分析</h5>
+				<h5>疾病统计分析</h5>
 				<div class="chart" id="pieChart"></div>
-				<h5>天气分析</h5>
+				<!--<h5>天气分析</h5>
 				<div class="chart" id="lineChart"></div>
-				
+				-->
 			</div>
 		</div>
 		
@@ -57,24 +57,24 @@
 						center: ['50%', '50%'],
 						data: [{
 							value: 335,
-							name: '直接访问'
+							name: '急性阑尾炎'
 						}, {
 							value: 310,
-							name: '邮件营销'
+							name: '消化道溃疡'
 						}, {
 							value: 234,
-							name: '联盟广告'
+							name: '败血病'
 						}, {
 							value: 135,
-							name: '视频广告'
+							name: '急性结石'
 						}, {
 							value: 1548,
-							name: '搜索引擎'
+							name: '风湿类疾病'
 						}]
 					}]
 				} : {
 					legend: {
-						data: ['蒸发量', '降水量']
+						data: ['严重事故率', '一般事故率']
 					},
 					grid: {
 						x: 35,
@@ -116,11 +116,11 @@
 						}
 					}],
 					series: [{
-						name: '蒸发量',
+						name: '严重事故率',
 						type: chartType,
 						data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
 					}, {
-						name: '降水量',
+						name: '一般事故率',
 						type: chartType,
 						data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
 					}]
@@ -132,8 +132,8 @@
 			};
 			var barChart = echarts.init(byId('barChart'));
 			barChart.setOption(getOption('bar'));
-			var lineChart = echarts.init(byId('lineChart'));
-			lineChart.setOption(getOption('line'));
+			//var lineChart = echarts.init(byId('lineChart'));
+			//lineChart.setOption(getOption('line'));
 			var pieChart = echarts.init(byId('pieChart'));
 			pieChart.setOption(getOption('pie'));
 			byId("echarts").addEventListener('tap',function(){
