@@ -23,10 +23,9 @@
 
 <img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/mainpage.png?raw=true" width="280"/> <img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/locationpage.png?raw=true" width="280"/> <img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/mypage.png?raw=true" width="280"/>
 
-- **事故上报**
+- **事故上报与天气查询**
 
-<img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/submitpage.png?raw=true" width="280"/>
+<img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/submitpage.png?raw=true" width="280"/> <img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/leftmenu.png?raw=true" width="280"/> <img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/weatherpage.png?raw=true" width="280"/>
 
-- **天气查询**
 
-<img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/leftmenu.png?raw=true" width="280"/> <img src="https://github.com/jianhui1012/SeaMedicalH5/blob/master/screenshot/weatherpage.png?raw=true" width="280"/>
+
